@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Radiant city</string>
+    <string name="title_activity_home_slider">Home_slider</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="announce_title">
+        <item>Lorem Ipsum</item>
+        <item>Lorem Ipsum</item>
+        <item>Lorem Ipsum</item>
+        <item>Lorem Ipsum</item>
+        <item>Lorem Ipsum</item>
+    </string-array>
+
+    <string-array name="announce_description">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, elit lobortis posuere vulputate, dolor mauris dignissim orci, sed auctor turpis orci ut tellus.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, elit lobortis posuere vulputate, dolor mauris dignissim orci, sed auctor turpis orci ut tellus.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, elit lobortis posuere vulputate, dolor mauris dignissim orci, sed auctor turpis orci ut tellus.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, elit lobortis posuere vulputate, dolor mauris dignissim orci, sed auctor turpis orci ut tellus.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer gravida, elit lobortis posuere vulputate, dolor mauris dignissim orci, sed auctor turpis orci ut tellus.</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

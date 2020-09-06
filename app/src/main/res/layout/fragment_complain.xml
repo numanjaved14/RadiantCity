@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frcomplain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment_complain">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_fifteen_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_thirtyfive_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_eighty_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ten_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ninety_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_fifteen_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Complains"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_complain_title"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_25sdp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninety_vertical"
+        app:layout_constraintStart_toEndOf="@+id/guideline_ten_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_thirtyfive_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/container_conplain_description">
+
+        <Spinner
+            android:id="@+id/complain_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/et_stroke"
+            android:padding="@dimen/_5sdp">
+
+        </Spinner>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_conplain_description"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_150sdp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninety_vertical"
+        app:layout_constraintStart_toEndOf="@+id/guideline_ten_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/constraint_complain_title"
+        app:layout_constraintBottom_toTopOf="@+id/complain_submit">
+
+        <EditText
+            android:id="@+id/complain_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/et_stroke"
+            android:gravity="top"
+            android:hint="Description"
+            android:padding="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/complain_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:background="@drawable/custom_button"
+        app:layout_constraintStart_toEndOf="@id/guideline_ten_vertical"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninety_vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_eighty_horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/container_conplain_description"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

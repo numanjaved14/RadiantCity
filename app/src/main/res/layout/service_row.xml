@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/_5sdp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/service_cardview"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:elevation="@dimen/_20sdp"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/hc_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/service_title"
+                app:layout_constraintEnd_toStartOf="@+id/hc_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/hc_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/service_date"
+                app:layout_constraintEnd_toStartOf="@+id/hc_time"
+                app:layout_constraintStart_toEndOf="@+id/hc_service"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/hc_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/service_time"
+                app:layout_constraintEnd_toStartOf="@+id/hc_acception"
+                app:layout_constraintStart_toEndOf="@+id/hc_date"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/hc_acception"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Acception"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/service_acception"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hc_time"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/service_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Service title"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/hc_service"
+                app:layout_constraintStart_toStartOf="@+id/hc_service"
+                app:layout_constraintTop_toBottomOf="@+id/hc_service" />
+
+            <TextView
+                android:id="@+id/service_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="04-09-2020"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/hc_date"
+                app:layout_constraintStart_toStartOf="@+id/hc_date"
+                app:layout_constraintTop_toBottomOf="@+id/hc_date" />
+
+            <TextView
+                android:id="@+id/service_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:45 PM"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/hc_time"
+                app:layout_constraintStart_toStartOf="@+id/hc_time"
+                app:layout_constraintTop_toBottomOf="@+id/hc_time" />
+
+            <TextView
+                android:id="@+id/service_acception"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes/No"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/hc_acception"
+                app:layout_constraintStart_toStartOf="@+id/hc_acception"
+                app:layout_constraintTop_toBottomOf="@+id/hc_acception" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
