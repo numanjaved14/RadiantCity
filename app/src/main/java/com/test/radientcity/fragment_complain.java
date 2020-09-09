@@ -21,7 +21,7 @@ public class fragment_complain extends Fragment {
     EditText complainDescription;
     Button complainSubmit;
 
-    String options[] = {"Bad Services", "Bad Security", "Other"}, s1;
+    String options[] = {"Bad Services", "Bad Security", "Other"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

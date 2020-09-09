@@ -35,7 +35,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment:2.1.0'
     implementation 'androidx.navigation:navigation-ui:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
-    implementation 'de.hdodenhof:circleimageview:3.1.0'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.github.scottyab:showhidepasswordedittext:0.8'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'

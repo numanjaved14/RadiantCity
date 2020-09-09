@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.makeramen.roundedimageview.RoundedImageView;
 import com.test.radientcity.Adapters.RecyclerViewAdapter;
 import com.test.radientcity.Adapters.SliderAdapter;
 import com.test.radientcity.Adapters.SliderAdapter;
@@ -24,10 +26,10 @@ import java.util.List;
 
 public class fragment_home extends Fragment {
 
-    List<Datamodel_announce> list = new ArrayList<Datamodel_announce>();
-
+    TextView tv_userName, tv_userEmail, tv_userAddress;
+    RoundedImageView iv_userImage;
     RecyclerView recyclerView;
-
+    RecyclerViewAdapter recyclerViewAdapter;
     ViewPager2 viewPager2;
     Handler slideHandler = new Handler();
 
@@ -36,6 +38,8 @@ public class fragment_home extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        initializeViews(view);
+        getData();
         //Slider code here
         viewPager2 = view.findViewById(R.id.viewPagerImageSlider);
 
@@ -75,20 +79,32 @@ public class fragment_home extends Fragment {
             }
         });
 
-        //Recyclerview code here
-        list.add(new Datamodel_announce("name","desc",R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name","desc",R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name","desc",R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name","desc",R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name","desc",R.drawable.ic_launcher_background));
-
-        recyclerView = view.findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        RecyclerViewAdapter recyclerViewAdapter = new RecyclerViewAdapter(getActivity(), list);
-        recyclerView.setAdapter(recyclerViewAdapter);
-
         return view;
+    }
+
+
+    private void initializeViews(View view) {
+        tv_userName = view.findViewById(R.id.user_name);
+        tv_userEmail = view.findViewById(R.id.user_email);
+        tv_userAddress = view.findViewById(R.id.user_address);
+        iv_userImage = view.findViewById(R.id.user_image);
+
+        recyclerView = view.findViewById(R.id.recyclerview_home);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerViewAdapter = new RecyclerViewAdapter(getActivity());
+        recyclerView.setAdapter(recyclerViewAdapter);
+    }
+
+    private void getData() {
+        List<Datamodel_announce> list = new ArrayList<Datamodel_announce>();
+
+        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
+        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
+        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
+        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
+        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
+        recyclerViewAdapter.setList(list);
+
     }
 
     private Runnable sliderRunnable = new Runnable() {

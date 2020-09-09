@@ -1,5 +1,6 @@
 package com.test.radientcity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,41 +21,49 @@ import java.util.List;
 
 public class fragment_service extends Fragment {
 
-    fragment_service_add fragment_Service_Add = new fragment_service_add();
 
     FloatingActionButton addServiceButton;
 
-    List<Datamodel_service_show> list = new ArrayList<Datamodel_service_show>();
     RecyclerView recyclerView;
+    ServiceAdapter serviceAdapter = new ServiceAdapter(getActivity());
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_service, container, false);
 
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
+        initializeViews(v);
+        getData();
 
+        return v;
+    }
+
+    private void initializeViews(View v) {
         recyclerView = v.findViewById(R.id.service_show);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ServiceAdapter serviceAdapter = new ServiceAdapter(getActivity(), list);
         recyclerView.setAdapter(serviceAdapter);
 
         addServiceButton = v.findViewById(R.id.add_service_btn);
         addServiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.main_frame, fragment_Service_Add);
-                fragmentTransaction.commit();
+                Intent intent = new Intent(getActivity(), ServiceAdd.class);
+                startActivity(intent);
             }
         });
+    }
 
-        return v;
+    private void getData() {
+        List<Datamodel_service_show> list = new ArrayList<Datamodel_service_show>();
+
+        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
+        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
+        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
+        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
+        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
+
+        serviceAdapter.setList(list);
     }
 }

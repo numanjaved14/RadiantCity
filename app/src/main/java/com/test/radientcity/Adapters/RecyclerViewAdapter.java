@@ -20,8 +20,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private Context context;
     List<Datamodel_announce> list;
 
-    public RecyclerViewAdapter(Context ct, List<Datamodel_announce> list){
-        this.list = list;
+    public RecyclerViewAdapter(Context ct) {
+        // this.list = list;
         context = ct;
     }
 
@@ -58,4 +58,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             announce_image = itemView.findViewById(R.id.announce_image);
         }
     }
+
+    public void setList(List<Datamodel_announce> listData) {
+        this.list = listData;
+        notifyDataSetChanged();
+    }
 }
+

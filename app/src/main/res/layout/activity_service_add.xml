@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ServiceAdd">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_seven_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.07" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_ninetythree_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_fifteen_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_thirty_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_thirtyfive_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_fiftyfive_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_eightyfive_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_fifteen_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Service"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/_15sdp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Spinner
+        android:id="@+id/chooseservice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/et_stroke"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_thirty_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninetythree_vertical"
+        app:layout_constraintStart_toEndOf="@+id/guideline_seven_vertical" />
+
+    <EditText
+        android:id="@+id/servicedescription"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/et_stroke"
+        android:gravity="top"
+        android:hint="Description"
+        android:padding="@dimen/_5sdp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_fiftyfive_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninetythree_vertical"
+        app:layout_constraintStart_toEndOf="@+id/guideline_seven_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_thirtyfive_horizontal" />
+
+    <TextView
+        android:id="@+id/datepicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select service date"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/timepicker"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninetythree_vertical"
+        app:layout_constraintStart_toEndOf="@+id/guideline_seven_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/servicedescription" />
+
+    <TextView
+        android:id="@+id/timepicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select service time"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_eightyfive_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninetythree_vertical"
+        app:layout_constraintStart_toEndOf="@+id/guideline_seven_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/datepicker" />
+
+    <Button
+        android:id="@+id/servicerequest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_button"
+        android:text="Request"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toStartOf="@+id/guideline_ninetythree_vertical"
+        app:layout_constraintStart_toEndOf="@+id/guideline_seven_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/guideline_eightyfive_horizontal" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.test.radientcity.DataModels.Datamodel_announce;
 import com.test.radientcity.DataModels.Datamodel_service_show;
 import com.test.radientcity.R;
 
@@ -19,8 +20,7 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.serviceV
     private Context context;
     List<Datamodel_service_show> list;
 
-    public  ServiceAdapter(Context ct,List<Datamodel_service_show> list){
-        this.list = list;
+    public  ServiceAdapter(Context ct){
         context = ct;
     }
 
@@ -55,5 +55,10 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.serviceV
             service_time = itemView.findViewById(R.id.service_time);
             service_acception = itemView.findViewById(R.id.service_acception);
         }
+    }
+
+    public void setList(List<Datamodel_service_show> listData) {
+        this.list = listData;
+        notifyDataSetChanged();
     }
 }
