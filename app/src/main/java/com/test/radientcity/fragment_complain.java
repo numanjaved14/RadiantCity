@@ -44,8 +44,7 @@ public class fragment_complain extends Fragment {
 
                 //TODO: Send the value of Complain title to API
                 if (item != null) {
-                    Toast.makeText(getContext(), item.toString(),
-                            Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getContext(), item.toString(),Toast.LENGTH_SHORT).show();
                 }
             }
 

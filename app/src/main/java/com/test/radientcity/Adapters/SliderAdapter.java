@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
 import com.test.radientcity.R;
 import com.test.radientcity.SliderItem;
 import com.test.radientcity.SliderItem;
@@ -39,8 +40,13 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     @Override
     public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
-        holder.setImage(sliderItems.get(position));
-        if (position == sliderItems.size() - 2) {
+        Picasso.get()
+                .load(sliderItems.get(position).getImageURL())
+                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_logo)
+                //.centerCrop()
+                .into(holder.imageView);
+        if (position == sliderItems.size()-1) {
             viewPager2.post(runnable);
         }
     }
@@ -52,16 +58,13 @@ public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderView
 
     class SliderViewHolder extends RecyclerView.ViewHolder {
 
-        private RoundedImageView imageView;
+        public RoundedImageView imageView;
 
         public SliderViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.imageSlider);
         }
 
-        void setImage(SliderItem sliderItem) {
-            imageView.setImageResource(sliderItem.getImage());
-        }
     }
 
     private Runnable runnable = new Runnable() {

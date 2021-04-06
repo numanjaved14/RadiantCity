@@ -37,7 +37,9 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.serviceV
         holder.service_title.setText(list.get(position).title);
         holder.service_date.setText(list.get(position).date);
         holder.service_time.setText(list.get(position).time);
+/*
         holder.service_acception.setText(list.get(position).acception);
+*/
     }
 
     @Override
@@ -53,7 +55,9 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.serviceV
             service_title = itemView.findViewById(R.id.service_title);
             service_date = itemView.findViewById(R.id.service_date);
             service_time = itemView.findViewById(R.id.service_time);
+/*
             service_acception = itemView.findViewById(R.id.service_acception);
+*/
         }
     }
 

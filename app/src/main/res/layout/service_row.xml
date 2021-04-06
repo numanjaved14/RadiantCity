@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/service_cardview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_50sdp"
+        android:layout_height="@dimen/_85sdp"
         android:elevation="@dimen/_20sdp"
         tools:ignore="MissingConstraints">
 
@@ -49,11 +49,11 @@
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/service_time"
-                app:layout_constraintEnd_toStartOf="@+id/hc_acception"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/hc_date"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/hc_acception"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -63,7 +63,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/service_acception"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/hc_time"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />-->
 
             <TextView
                 android:id="@+id/service_title"
@@ -95,7 +95,7 @@
                 app:layout_constraintStart_toStartOf="@+id/hc_time"
                 app:layout_constraintTop_toBottomOf="@+id/hc_time" />
 
-            <TextView
+            <!--<TextView
                 android:id="@+id/service_acception"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +104,15 @@
                 app:layout_constraintEnd_toEndOf="@+id/hc_acception"
                 app:layout_constraintStart_toStartOf="@+id/hc_acception"
                 app:layout_constraintTop_toBottomOf="@+id/hc_acception" />
-
+-->
+            <ImageView
+                android:id="@+id/acception_status"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_logo" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

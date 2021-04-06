@@ -1,8 +1,10 @@
 package com.test.radientcity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.test.radientcity.DataModels.Dummy;
 
 public class nav_home extends AppCompatActivity {
 
@@ -28,6 +36,8 @@ public class nav_home extends AppCompatActivity {
         setFragment(fragment_Home);
 
         onNavigation();
+
+
     }
 
     private void initialize() {

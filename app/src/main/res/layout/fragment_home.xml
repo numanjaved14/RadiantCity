@@ -95,6 +95,16 @@
             app:layout_constraintStart_toEndOf="@+id/user_image"
             app:layout_constraintTop_toBottomOf="@+id/user_email" />
 
+        <ImageButton
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_logout"
+            app:layout_constraintTop_toTopOf="@+id/user_profile"
+            app:layout_constraintBottom_toBottomOf="@+id/user_profile"
+            app:layout_constraintEnd_toEndOf="@+id/user_profile"
+            android:backgroundTint="@color/colorPrimary"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
