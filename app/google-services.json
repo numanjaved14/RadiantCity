@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "260530859057",
+    "firebase_url": "https://radientcity-4cf4b.firebaseio.com",
+    "project_id": "radientcity-4cf4b",
+    "storage_bucket": "radientcity-4cf4b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260530859057:android:a8e463777066598c41b910",
+        "android_client_info": {
+          "package_name": "com.test.radientcity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260530859057-15jelfgnq89h4i7eq4heic0342vsdgvk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVVXpBThYBKz1XNQc_b57aqwvbUhX8DGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260530859057-15jelfgnq89h4i7eq4heic0342vsdgvk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260530859057:android:614e3085f927c9b141b910",
+        "android_client_info": {
+          "package_name": "com.test.radientcityadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260530859057-15jelfgnq89h4i7eq4heic0342vsdgvk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVVXpBThYBKz1XNQc_b57aqwvbUhX8DGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260530859057-15jelfgnq89h4i7eq4heic0342vsdgvk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

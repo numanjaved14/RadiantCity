@@ -10,17 +10,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.test.radientcity.DataModels.AnnouncementdataModel;
+import com.test.radientcity.DataModels.Billdatamodel;
+import com.test.radientcity.DataModels.Datamodel_announce;
 import com.test.radientcity.R;
 
 import java.util.List;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.recyclerViewAdapterHolder> {
+public class BillAdapter extends RecyclerView.Adapter<BillAdapter.recyclerViewAdapterHolder> {
 
     private Context context;
-    List<AnnouncementdataModel> list;
+    List<Billdatamodel> list;
 
-    public RecyclerViewAdapter(Context ct) {
+    public BillAdapter(Context ct) {
         // this.list = list;
         context = ct;
     }
@@ -28,7 +29,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public recyclerViewAdapterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        final View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_row, parent, false);
+        final View mView = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_bill, parent, false);
         final recyclerViewAdapterHolder mViewHolder = new recyclerViewAdapterHolder(mView);
 
         return mViewHolder;
@@ -36,10 +37,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull recyclerViewAdapterHolder holder, int position) {
-        holder.announce_title.setText(list.get(position).getTitle());
-        holder.announce_description.setText(list.get(position).getDescription());
+        holder.billed_title.setText(list.get(position).getTitle());
+        holder.billDescription.setText(list.get(position).getDescription());
+        holder.billCost .setText(list.get(position).getAmount());
+        holder.issuedate .setText(list.get(position).getIssueDate());
+        holder.dueDate.setText(list.get(position).getDueDate());
         holder.tv_status.setText(list.get(position).getStatus());
-        holder.tv_date.setText(list.get(position).getDate());
     }
 
     @Override
@@ -47,24 +50,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         int size = 0;
         if (list!=null && list.size()!=0){
             size = list.size();
+
         }
         return size;
     }
 
     public class recyclerViewAdapterHolder extends RecyclerView.ViewHolder {
 
-        TextView announce_title, announce_description,tv_date,tv_status;
+        TextView billed_title, billDescription, billCost, issuedate, dueDate,tv_status;
 
         public recyclerViewAdapterHolder(@NonNull View itemView) {
             super(itemView);
-            announce_title = itemView.findViewById(R.id.announce_title);
-            announce_description = itemView.findViewById(R.id.announce_description);
-            tv_date = itemView.findViewById(R.id.tv_date);
+            billed_title = itemView.findViewById(R.id.billed_title);
+            billDescription = itemView.findViewById(R.id.bill_description);
+            billCost = itemView.findViewById(R.id.bill_cost);
+            issuedate = itemView.findViewById(R.id.issuedate);
+            dueDate = itemView.findViewById(R.id.duedate);
             tv_status = itemView.findViewById(R.id.tv_status);
         }
     }
 
-    public void setList(List<AnnouncementdataModel> listData) {
+    public void setList(List<Billdatamodel> listData) {
         this.list = listData;
         notifyDataSetChanged();
     }

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,21 +31,26 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.test.radientcity.Adapters.RecyclerViewAdapter;
 import com.test.radientcity.Adapters.SliderAdapter;
 import com.test.radientcity.Adapters.SliderAdapter;
+import com.test.radientcity.DataModels.AnnouncementdataModel;
 import com.test.radientcity.DataModels.Datamodel_announce;
 import com.test.radientcity.DataModels.Dummy;
+import com.test.radientcity.DataModels.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class fragment_home extends Fragment {
 
-    TextView tv_userName, tv_userEmail, tv_userAddress;
+    TextView tv_userName;
     ImageButton ib_logOut;
     RoundedImageView iv_userImage;
     RecyclerView recyclerView;
     RecyclerViewAdapter recyclerViewAdapter;
     ViewPager2 viewPager2;
     Handler slideHandler = new Handler();
+    private FirebaseAuth mAuth;
+
+    private List<AnnouncementdataModel> list = new ArrayList<AnnouncementdataModel>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,10 +58,12 @@ public class fragment_home extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         initializeViews(view);
-        getData();
 
+        fetchAllAnnouncements();
         ib_logOut.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+
                 Intent intent = new Intent(getActivity().getApplication(), MainActivity.class);
                 startActivity(intent);
             }
@@ -102,6 +111,11 @@ public class fragment_home extends Fragment {
                 slideHandler.postDelayed(sliderRunnable, 3000);
             }
         });
+        mAuth = FirebaseAuth.getInstance();
+          FirebaseUser firebaseUser= mAuth.getCurrentUser();
+        loadUserData(firebaseUser.getUid());
+         Log.d("mydata", "Name: " +firebaseUser.getDisplayName());
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -110,9 +124,8 @@ public class fragment_home extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 Dummy dummy = dataSnapshot.getValue(Dummy.class);
-                tv_userName.setText(dummy.getName());
-                tv_userEmail.setText(dummy.getEmail());
-                Log.d("mydata", "Name: " + dummy.getName()+ ", email: "+dummy.getEmail());
+
+                 Log.d("mydata", "Name: " + dummy.getName()+ ", email: "+dummy.getEmail());
                 /*Toast.makeText(getContext(), "Name: " + dummy.getName()+ ", email: "+dummy.getEmail()
                         , Toast.LENGTH_LONG).show();*/
             }
@@ -130,9 +143,7 @@ public class fragment_home extends Fragment {
 
     private void initializeViews(View view) {
         tv_userName = view.findViewById(R.id.user_name);
-        tv_userEmail = view.findViewById(R.id.user_email);
-        tv_userAddress = view.findViewById(R.id.user_address);
-        iv_userImage = view.findViewById(R.id.user_image);
+
         ib_logOut = view.findViewById(R.id.logout);
 
         recyclerView = view.findViewById(R.id.recyclerview_home);
@@ -140,18 +151,47 @@ public class fragment_home extends Fragment {
         recyclerViewAdapter = new RecyclerViewAdapter(getActivity());
         recyclerView.setAdapter(recyclerViewAdapter);
     }
+    private void fetchAllAnnouncements() {
+        list.clear();
 
-    private void getData() {
-        List<Datamodel_announce> list = new ArrayList<Datamodel_announce>();
+        DatabaseReference firebaseRef = FirebaseDatabase.getInstance().getReference("Announcements");
+        firebaseRef.addValueEventListener(new ValueEventListener() {
+                                              @Override
+                                              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                  if (dataSnapshot.getValue() != null) {
+                                                      for (DataSnapshot shots : dataSnapshot.getChildren()) {
+                                                          AnnouncementdataModel announcementdataModel = shots.getValue(AnnouncementdataModel.class);
+                                                          assert announcementdataModel != null;
 
-        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
-        list.add(new Datamodel_announce("name", "desc", R.drawable.ic_launcher_background));
-        recyclerViewAdapter.setList(list);
 
+                                                              String title = announcementdataModel.getTitle();
+                                                              String desc = announcementdataModel.getDescription();
+                                                              String date = announcementdataModel.getDate();
+                                                              String status = announcementdataModel.getStatus();
+                                                              AnnouncementdataModel model = new AnnouncementdataModel(date, desc,status,title);
+                                                               list.add(model);
+
+                                                      }
+                                                   if (list!=null && list.size()!=0){
+                                                       recyclerViewAdapter.setList(list);
+                                                   }
+
+                                                  } else {
+                                                      Toast.makeText(getActivity(), "No Announcement Found",
+                                                              Toast.LENGTH_SHORT).show();
+                                                  }
+                                              }
+
+                                              @Override
+                                              public void onCancelled(@NonNull DatabaseError error) {
+                                                  Toast.makeText(getActivity(), error.getMessage(),
+                                                          Toast.LENGTH_SHORT).show();
+                                              }
+                                          }
+        );
     }
+
+
 
     private Runnable sliderRunnable = new Runnable() {
         @Override
@@ -170,5 +210,27 @@ public class fragment_home extends Fragment {
     public void onResume() {
         super.onResume();
         slideHandler.postDelayed(sliderRunnable, 3000);
+    }
+    private void loadUserData(final String id) {
+
+        DatabaseReference firebaseRef = FirebaseDatabase.getInstance().getReference("Users").child(id);
+        firebaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                User modelUser = dataSnapshot.getValue(User.class);
+                String userId = modelUser.getFirebaseId();
+                String name = modelUser.getUserName();
+                tv_userName.setText(name);
+                Log.d("dataserrt",name);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

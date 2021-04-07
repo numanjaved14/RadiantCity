@@ -9,13 +9,15 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/service_cardview"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_85sdp"
+        android:layout_height="wrap_content"
         android:elevation="@dimen/_20sdp"
         tools:ignore="MissingConstraints">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/hc_service"
@@ -30,42 +32,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/hc_date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Date"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/service_date"
-                app:layout_constraintEnd_toStartOf="@+id/hc_time"
-                app:layout_constraintStart_toEndOf="@+id/hc_service"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/hc_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Time"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/service_time"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/hc_date"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <!--<TextView
-                android:id="@+id/hc_acception"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Acception"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/service_acception"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/hc_time"
-                app:layout_constraintTop_toTopOf="parent" />-->
-
-            <TextView
                 android:id="@+id/service_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -74,6 +40,19 @@
                 app:layout_constraintEnd_toEndOf="@+id/hc_service"
                 app:layout_constraintStart_toStartOf="@+id/hc_service"
                 app:layout_constraintTop_toBottomOf="@+id/hc_service" />
+
+            <TextView
+                android:id="@+id/hc_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Date"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/service_date"
+                app:layout_constraintEnd_toStartOf="@+id/hc_time"
+                app:layout_constraintStart_toEndOf="@+id/hc_service"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/service_date"
@@ -86,7 +65,22 @@
                 app:layout_constraintTop_toBottomOf="@+id/hc_date" />
 
             <TextView
-                android:id="@+id/service_time"
+                android:id="@+id/hc_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Description"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+
+                app:layout_constraintBottom_toTopOf="@+id/service_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hc_date"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/service_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="12:45 PM"
@@ -95,26 +89,32 @@
                 app:layout_constraintStart_toStartOf="@+id/hc_time"
                 app:layout_constraintTop_toBottomOf="@+id/hc_time" />
 
-            <!--<TextView
-                android:id="@+id/service_acception"
+ <TextView
+                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="Status"
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+
+                app:layout_constraintBottom_toTopOf="@+id/service_time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hc_date"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/service_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yes/No"
+                android:text="12:45 PM"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/hc_acception"
-                app:layout_constraintStart_toStartOf="@+id/hc_acception"
-                app:layout_constraintTop_toBottomOf="@+id/hc_acception" />
--->
-            <ImageView
-                android:id="@+id/acception_status"
-                android:layout_width="@dimen/_20sdp"
-                android:layout_height="@dimen/_20sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_margin="@dimen/_5sdp"
-                android:src="@drawable/ic_logo" />
+                app:layout_constraintEnd_toEndOf="@+id/hc_time"
+                app:layout_constraintStart_toStartOf="@+id/hc_time"
+                app:layout_constraintTop_toBottomOf="@+id/hc_time" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>

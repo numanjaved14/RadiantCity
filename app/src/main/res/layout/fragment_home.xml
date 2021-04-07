@@ -52,15 +52,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.07" />
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/user_image"
-            android:layout_width="@dimen/_80sdp"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_launcher_background"
-            app:riv_corner_radius="@dimen/_40sdp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guideline_inner_seven_vertical"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/user_name"
@@ -72,30 +63,12 @@
             android:textColor="@android:color/white"
             android:textSize="@dimen/_15sdp"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/user_image"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/user_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:text="User_Email"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toEndOf="@+id/user_image"
-            app:layout_constraintTop_toBottomOf="@+id/user_name" />
-
-        <TextView
-            android:id="@+id/user_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:text="User_Address"
-            android:textColor="@android:color/white"
-            app:layout_constraintStart_toEndOf="@+id/user_image"
-            app:layout_constraintTop_toBottomOf="@+id/user_email" />
-
-        <ImageButton
+                 <ImageButton
             android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

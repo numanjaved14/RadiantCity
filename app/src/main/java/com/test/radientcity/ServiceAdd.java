@@ -1,8 +1,10 @@
 package com.test.radientcity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,10 +21,21 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class ServiceAdd extends AppCompatActivity {
 
@@ -32,10 +45,15 @@ public class ServiceAdd extends AppCompatActivity {
     Date date;
     SimpleDateFormat f12hours;
     DatePickerDialog dialog;
+    String cat;
+    private FirebaseAuth mAuth;
 
-    String options[] = {"Power Wash", "Electric Mechanic", "Plumber", "Other"};
+    List<String> list = new ArrayList<>();
     String ServiceDate, ServiceTime;
     int hour, minute;
+    ProgressDialog progressDialog;
+    DatabaseReference firebaseRef;
+
 
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
@@ -49,7 +67,49 @@ public class ServiceAdd extends AppCompatActivity {
         serviceSpinner();
         datePickerDialog();
         timePickerDialog();
+        serviceRequest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 setRequest(cat, serviceDescription.getText().toString().trim(),ServiceDate,ServiceTime);
+            }
+        });
 
+    }
+
+
+    private void setRequest(String categary, String description, String servicedate, String servicetime) {
+        progressDialog.show();
+        Random rand = new Random();
+        int upperbound = 15000;
+        int int_random = rand.nextInt(upperbound);
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser= mAuth.getCurrentUser();
+
+        String announcementId = "service-" + categary + "-" + int_random + "-Radient";
+        firebaseRef = FirebaseDatabase.getInstance().getReference("Service").child(firebaseUser.getUid()).child(announcementId);
+        HashMap<String, String> hashmap = new HashMap<>();
+        hashmap.put("firebaseId", announcementId);
+        hashmap.put("categary", categary);
+        hashmap.put("description", description);
+        hashmap.put("serviceDate", servicedate);
+        hashmap.put("serviceTime", servicetime);
+        hashmap.put("serviceStatus", "pending");
+
+        Log.i("PYC_LOG", "Sending Params " + hashmap);
+        firebaseRef.setValue(hashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                progressDialog.dismiss();
+                if (task.isSuccessful()) {
+                    Toast.makeText(ServiceAdd.this, "Service Requested Successfully",
+                            Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(ServiceAdd.this, task.getException().getMessage(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void timePickerDialog() {
@@ -65,6 +125,7 @@ public class ServiceAdd extends AppCompatActivity {
                                 hour = hourOfDay;
                                 minute = minutes;
                                 ServiceTime = hour + ":" + minute;
+
                                 SimpleDateFormat f24hours = new SimpleDateFormat(
                                         "HH:mm"
                                 );
@@ -73,6 +134,7 @@ public class ServiceAdd extends AppCompatActivity {
                                     f12hours = new SimpleDateFormat(
                                             "hh:mm aa"
                                     );
+                                    ServiceTime = f12hours.format(date);
                                     tv_timePicker.setText(f12hours.format(date));
                                 } catch (ParseException e) {
                                     e.printStackTrace();
@@ -121,19 +183,16 @@ public class ServiceAdd extends AppCompatActivity {
     }
 
     private void serviceSpinner() {
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, list);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         chooseService.setAdapter(adapter);
 
         chooseService.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                Object item = adapterView.getItemAtPosition(i);
+                  cat = list.get(i).trim();
 
-                //TODO: Send the value of Service to API
-                if (item != null) {
 
-                }
             }
 
             @Override
@@ -144,10 +203,19 @@ public class ServiceAdd extends AppCompatActivity {
     }
 
     private void initialize() {
+        list.add("Power Wash");
+        list.add("Electric Mechanic");
+        list.add("Plumber");
+        list.add("Other");
+
+
         chooseService = findViewById(R.id.chooseservice);
         serviceDescription = findViewById(R.id.servicedescription);
         datePicker = findViewById(R.id.datepicker);
         tv_timePicker = findViewById(R.id.timepicker);
         serviceRequest = findViewById(R.id.servicerequest);
+        progressDialog = new ProgressDialog(ServiceAdd.this);
+        progressDialog.setTitle("Adding Service");
+        progressDialog.setMessage("loading . . . . ");
     }
 }

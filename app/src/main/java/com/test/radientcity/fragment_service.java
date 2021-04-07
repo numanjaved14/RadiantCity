@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -13,8 +15,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.test.radientcity.Adapters.ServiceAdapter;
+import com.test.radientcity.DataModels.Billdatamodel;
 import com.test.radientcity.DataModels.Datamodel_service_show;
+import com.test.radientcity.DataModels.ServiceDataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +37,8 @@ public class fragment_service extends Fragment {
 
     RecyclerView recyclerView;
     ServiceAdapter serviceAdapter = new ServiceAdapter(getActivity());
-
+    private List<ServiceDataModel> list = new ArrayList<ServiceDataModel>();
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,9 +46,50 @@ public class fragment_service extends Fragment {
         View v = inflater.inflate(R.layout.fragment_service, container, false);
 
         initializeViews(v);
-        getData();
-
+        fetchAllservices();
         return v;
+    }
+
+    private void fetchAllservices() {
+        list.clear();
+        mAuth = FirebaseAuth.getInstance();
+
+        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
+        DatabaseReference firebaseRef = FirebaseDatabase.getInstance().getReference("Service").child(firebaseUser.getUid());
+        firebaseRef.addValueEventListener(new ValueEventListener() {
+                                              @Override
+                                              public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                  if (dataSnapshot.getValue() != null) {
+                                                      for (DataSnapshot shots : dataSnapshot.getChildren()) {
+                                                          ServiceDataModel serviceDataModel = shots.getValue(ServiceDataModel.class);
+                                                          if (serviceDataModel != null) {
+                                                              ServiceDataModel serviceDataModelNew = new ServiceDataModel();
+                                                              serviceDataModelNew.setCategary(serviceDataModel.getCategary());
+                                                              serviceDataModelNew.setDescription(serviceDataModel.getDescription());
+                                                              serviceDataModelNew.setServiceDate(serviceDataModel.getServiceDate());
+                                                              serviceDataModelNew.setServiceStatus(serviceDataModel.getServiceStatus());
+
+
+                                                              list.add(serviceDataModelNew);
+
+                                                          }
+                                                      }
+                                                      if (list.size() != 0)
+                                                          serviceAdapter.setList(list);
+                                                  } else {
+                                                      Toast.makeText(getActivity(), "No Service Found",
+                                                              Toast.LENGTH_SHORT).show();
+                                                  }
+                                              }
+
+                                              @Override
+                                              public void onCancelled(@NonNull DatabaseError error) {
+                                                  Toast.makeText(getActivity(), error.getMessage(),
+                                                          Toast.LENGTH_SHORT).show();
+                                              }
+                                          }
+        );
     }
 
     private void initializeViews(View v) {
@@ -55,15 +108,4 @@ public class fragment_service extends Fragment {
         });
     }
 
-    private void getData() {
-        List<Datamodel_service_show> list = new ArrayList<Datamodel_service_show>();
-
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-        list.add(new Datamodel_service_show("Title", "14-03-2020", "12:00 PM", "Yes/NO"));
-
-        serviceAdapter.setList(list);
-    }
 }
