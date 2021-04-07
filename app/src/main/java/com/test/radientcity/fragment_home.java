@@ -74,15 +74,15 @@ public class fragment_home extends Fragment {
         // TODO: Load images from API
         List<SliderItem> sliderItems = new ArrayList<>();
         sliderItems.add(new SliderItem(R.drawable.ic_launcher_background
-                ,"https://images.unsplash.com/photo-1502736842968-bcaab72d0700?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80"));
+                ,"https://zameenblog.s3.amazonaws.com/blog/wp-content/uploads/2019/05/cover-photo.jpg"));
         sliderItems.add(new SliderItem(R.drawable.ic_launcher_background
-                ,"https://images.unsplash.com/photo-1502736842968-bcaab72d0700?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80"));
+                ,"https://arcdn.zameen.com/area-guides/wp-content/uploads/2019/02/Bahria-Town_karachi-150120200551.jpg"));
         sliderItems.add(new SliderItem(R.drawable.ic_launcher_background
-                ,"https://images.unsplash.com/photo-1502736842968-bcaab72d0700?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80"));
+                ,"https://arcdn.zameen.com/area-guides/wp-content/uploads/2019/10/precinct32bahriatown-karachi-23102019226.jpg"));
         sliderItems.add(new SliderItem(R.drawable.ic_launcher_background
-                ,"https://images.unsplash.com/photo-1502736842968-bcaab72d0700?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80"));
+                ,"https://arcdn.zameen.com/area-guides/wp-content/uploads/2019/10/Precinct-15-Bahria-Town-Karachi-17102019951.jpg"));
         sliderItems.add(new SliderItem(R.drawable.ic_launcher_background
-                ,"https://images.unsplash.com/photo-1502736842968-bcaab72d0700?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHw%3D&w=1000&q=80"));
+                ,"https://manahilestate.com/wp-content/uploads/2017/06/Bahria-Town-Karachi-Image.jpg"));
 
         viewPager2.setAdapter(new SliderAdapter(sliderItems, viewPager2));
 
