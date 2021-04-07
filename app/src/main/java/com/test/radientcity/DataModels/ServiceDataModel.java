@@ -7,6 +7,15 @@ public class ServiceDataModel {
     String serviceDate;
     String serviceStatus;
     String serviceTime;
+    String ParentId;
+
+    public String getParentId() {
+        return ParentId;
+    }
+
+    public void setParentId(String parentId) {
+        ParentId = parentId;
+    }
 
     public String getCategary() {
         return categary;

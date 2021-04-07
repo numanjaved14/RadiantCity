@@ -94,6 +94,7 @@ public class ServiceAdd extends AppCompatActivity {
         hashmap.put("serviceDate", servicedate);
         hashmap.put("serviceTime", servicetime);
         hashmap.put("serviceStatus", "pending");
+        hashmap.put("ParentId", firebaseUser.getUid());
 
         Log.i("PYC_LOG", "Sending Params " + hashmap);
         firebaseRef.setValue(hashmap).addOnCompleteListener(new OnCompleteListener<Void>() {
